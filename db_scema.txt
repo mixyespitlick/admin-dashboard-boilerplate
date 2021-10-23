@@ -1,0 +1,12 @@
+App for slf
+#database_scema
+-drivers => DONE
+-vehicle_types
+-divisions
+-areas
+-vehicles
+	-vechile_types_id
+-service_providers
+	-vehicle_id
+-company
+	-providers_id
