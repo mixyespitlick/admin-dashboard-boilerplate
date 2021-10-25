@@ -49,51 +49,62 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    <h5>Drivers</h5>
-                    <span>List of Drivers</span>
-                    <div class="card-header-right">
-                        <i class="icofont icofont-rounded-down"></i>
-                        <i class="icofont icofont-refresh"></i>
-                        <i class="icofont icofont-close-circled"></i>
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <h5>VEHICLE TYPES</h5>
+                            <span>List of Vehicle Types</span>
+                        </div>
+                        <div class="col-sm-2 text-right">
+                            {{-- <i class="icofont icofont-ui-edit"></i> --}}
+                            <a href="{{ route('vehicle_types.create') }}" class="btn btn-sm btn-primary">
+                                Create
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="card-block">
                     <div class="dt-responsive table-responsive">
-                        <table class="table table-striped table-bordered nowrap" id="driverTable">
+                        <table class="table table-bordered" cellspacing="0" id="vehicleTypesTable">
                             <thead>
                                 <tr>
-                                    <th> ID </th>
-                                    <th> First Name </th>
-                                    <th> Last Name </th>
+                                    <th> No. </th>
+                                    <th> Name </th>
+                                    <th> Description </th>
                                     <th> Action </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
-                        foreach($drivers as $driver) : ?>
+                                @php
+                                $i=0
+                                @endphp
+                                @foreach($vehicle_types as $vehicle_type)
                                 <tr>
+                                    <td>{{ ++$i }}</td>
                                     <td>
-                                        <?php echo $driver['id']; ?>
+                                        {{ $vehicle_type->name}}
                                     </td>
                                     <td>
-                                        <?php echo $driver['fname']; ?>
+                                        {{ $vehicle_type->description }}
                                     </td>
                                     <td>
-                                        <?php echo $driver['lname']; ?>
-                                    </td>
-                                    <td>
-                                        <form action="{{ route('drivers.destroy',$driver->id) }}" method="POST">
-                                            <a href="{{ route('drivers.edit',$driver->id) }}"
-                                                class="btn btn-sm btn-warning">
-                                                Edit
+                                        <form action="{{ route('vehicle_types.destroy',$vehicle_type->id) }}"
+                                            method="POST">
+                                            <a href="{{ route('vehicle_types.edit',$vehicle_type->id) }}"
+                                                class="btn btn-sm btn-warning m-r-5">
+                                                <i class="icofont icofont-ui-edit"></i>
                                             </a>
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                                            <button class="btn btn-sm btn-danger" type="submit"><i
+                                                    class="icofont icofont-delete-alt"></i></button>
+                                            {{-- <button class="btn btn-sm-danger" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Delete"
+                                                type="submit"><i class="icofont icofont-delete-alt"></i></button>
+                                            --}}
                                         </form>
                                     </td>
                                 </tr>
-                                <?php endforeach; ?>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -120,7 +131,7 @@
 {{-- <script src="{{ asset('pages/data-table/js/data-table-custom.js') }}"></script> --}}
 <script>
     $(document).ready(function() {
-    	$('#driverTable').DataTable();
+    	$('#vehicleTypesTable').DataTable();
 	});
 </script>
 @endpush

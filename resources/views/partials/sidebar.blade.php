@@ -53,6 +53,13 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
+            <li class="">
+                <a href="{{ route('vehicle_types.index') }}" data-i18n="nav.form-wizard.main">
+                    <span class="pcoded-micon"><i class="ti-archive"></i></span>
+                    <span class="pcoded-mtext">Vehicle Type</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
 
         </ul>
     </div>

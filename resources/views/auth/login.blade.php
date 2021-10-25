@@ -4,8 +4,8 @@
 
 
 <!-- Outer Row -->
-<section class="login p-fixed d-flex text-center bg-primary common-img-bg">
-    <div class="container">
+<section class="login p-fixed d-flex text-center bg-primary">
+    <div class="container-fluid">
         <div class=" row">
 
             <div class="col-sm-12">

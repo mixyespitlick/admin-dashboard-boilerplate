@@ -29,6 +29,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     // Route::post('/drivers/store', 'DriverController@store')->name('driver.store');
     // Route::get('/drivers/store', 'DriverController@store')->name('driver.edit');
     // Route::get('/drivers/store', 'DriverController@store')->name('driver.destroy');
+    Route::resource('/vehicle_types', 'VehicleTypeController');
 });
 
 Route::group(['prefix' => 'products', 'middleware' => 'auth'], function () {
