@@ -60,6 +60,13 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
+            <li class="">
+                <a href="{{ route('service_provider_types.index') }}" data-i18n="nav.form-wizard.main">
+                    <span class="pcoded-micon"><i class="ti-archive"></i></span>
+                    <span class="pcoded-mtext">Service Provider Type</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
 
         </ul>
     </div>

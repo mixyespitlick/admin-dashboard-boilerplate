@@ -30,6 +30,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     // Route::get('/drivers/store', 'DriverController@store')->name('driver.edit');
     // Route::get('/drivers/store', 'DriverController@store')->name('driver.destroy');
     Route::resource('/vehicle_types', 'VehicleTypeController');
+    Route::resource('/service_provider_types', 'ServiceProviderTypeController');
 });
 
 Route::group(['prefix' => 'products', 'middleware' => 'auth'], function () {
