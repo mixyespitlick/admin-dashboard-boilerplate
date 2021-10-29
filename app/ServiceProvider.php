@@ -12,4 +12,9 @@ class ServiceProvider extends Model
     {
         return $this->belongsTo(ServiceProviderType::class, 'service_provider_type_id', 'id');
     }
+
+    public function weighInLogs()
+    {
+        return $this->hasMany(WeighInLog::class);
+    }
 }

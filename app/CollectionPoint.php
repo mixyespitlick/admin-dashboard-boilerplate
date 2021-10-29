@@ -12,4 +12,9 @@ class CollectionPoint extends Model
     {
         return $this->belongsTo(Area::class, 'area_id', 'id');
     }
+
+    public function weighInLogs()
+    {
+        return $this->hasMany(WeighInLog::class);
+    }
 }

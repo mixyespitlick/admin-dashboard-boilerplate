@@ -88,6 +88,20 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
+            <li class="">
+                <a href="{{ route('vehicles.index') }}" data-i18n="nav.form-wizard.main">
+                    <span class="pcoded-micon"><i class="ti-archive"></i></span>
+                    <span class="pcoded-mtext">Vehicles</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class="">
+                <a href="{{ route('weigh_in_logs.index') }}" data-i18n="nav.form-wizard.main">
+                    <span class="pcoded-micon"><i class="ti-archive"></i></span>
+                    <span class="pcoded-mtext">Weigh-in Logs</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
 
         </ul>
     </div>

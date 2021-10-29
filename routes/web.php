@@ -34,6 +34,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::resource('/service_providers', 'ServiceProviderController');
     Route::resource('/collection_points', 'CollectionPointController');
     Route::resource('/areas', 'AreaController');
+    Route::resource('/weigh_in_logs', 'WeighInLogController');
+    Route::resource('/vehicles', 'VehicleController');
 });
 
 Route::group(['prefix' => 'products', 'middleware' => 'auth'], function () {
