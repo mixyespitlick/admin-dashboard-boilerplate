@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('/', 'DashboarController@index')->name('dashboard');
+    Route::get('/drivers/getDriver/{id}', 'DriverController@getDriver')->name('driver.json');
     Route::resource('/drivers', 'DriverController');
     // Route::get('/drivers', 'DriverController@index')->name('driver.index');
     // Route::get('/drivers/create', 'DriverController@create')->name('driver.create');
@@ -35,6 +36,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::resource('/collection_points', 'CollectionPointController');
     Route::resource('/areas', 'AreaController');
     Route::resource('/weigh_in_logs', 'WeighInLogController');
+    Route::get('/vehicles/getVehicle/{id}', 'VehicleController@getVehicle')->name('vehicle.json');
     Route::resource('/vehicles', 'VehicleController');
 });
 

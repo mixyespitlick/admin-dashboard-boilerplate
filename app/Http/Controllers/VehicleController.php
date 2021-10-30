@@ -109,4 +109,16 @@ class VehicleController extends Controller
     {
         $vehicle->delete();
     }
+
+    //Other functions
+    public function getVehicle($id)
+    {
+
+        $vehicle = Vehicle::find($id);
+        if ($vehicle) {
+            return response()->json(['status' => 200, 'vehicle' => $vehicle]);
+        } else {
+            return response()->json(['status' => 404, 'message' => 'Vehicle not found']);
+        }
+    }
 }

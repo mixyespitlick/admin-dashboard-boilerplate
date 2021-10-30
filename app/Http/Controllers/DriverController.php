@@ -96,4 +96,16 @@ class DriverController extends Controller
         $driver->delete();
         return redirect()->route('drivers.index')->with('success', 'Driver deleted successfully');
     }
+
+    //Other functions
+    public function getDriver($id)
+    {
+
+        $driver = Driver::find($id);
+        if ($driver) {
+            return response()->json(['status' => 200, 'vehicle' => $driver]);
+        } else {
+            return response()->json(['status' => 404, 'message' => 'Driver not found']);
+        }
+    }
 }

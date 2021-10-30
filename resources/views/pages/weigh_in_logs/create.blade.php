@@ -52,9 +52,9 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Driver</label>
                             <div class="col-sm-10">
-                                <select name="vehicle_id" class="form-control js-example-basic-single">
+                                <select name="driver_id" class="form-control form-control-default">
                                     @foreach ($drivers as $driver)
-                                    <option value="{{ $driver->id }}">{{ $driver->fname."".$driver->lname}}
+                                    <option value="{{ $driver->id }}">{{ $driver->fname}}
                                     </option>
                                     @endforeach
                                 </select>
@@ -64,7 +64,7 @@
                             <label class="col-sm-2 col-form-label">Vehicle</label>
                             <div class="col-sm-10">
                                 <select name="vehicle_id" class="form-control form-control-default"
-                                    placeholder="Select Driver">
+                                    placeholder="Select Driver" id="vehicleSelect">
                                     <option value="">Select Vehicle Type </option>
                                     @foreach ($vehicles as $vehicle)
                                     <option value="{{ $vehicle->id }}">{{ $vehicle->plate_no}}
@@ -124,7 +124,7 @@
                             <label class="col-sm-2 col-form-label">Gross Weight</label>
                             <div class="col-sm-10">
                                 <input class="form-control" type="number" name="gross_weight"
-                                    value="{{ old('gross_weight') }}">
+                                    value="{{ old('gross_weight') }}" id="grossWeight">
                             </div>
                             {{-- {!! $errors->first('first_name', '<small class="text-danger">:message</small>') !!}
                             --}}
@@ -133,7 +133,7 @@
                             <label class="col-sm-2 col-form-label">Net Weight</label>
                             <div class="col-sm-10">
                                 <input class="form-control" type="number" name="net_weight"
-                                    value="{{ old('net_weight') }}">
+                                    value="{{ old('net_weight') }}" id="netWeight" readonly>
                             </div>
                             {{-- {!! $errors->first('first_name', '<small class="text-danger">:message</small>') !!}
                             --}}
@@ -173,11 +173,39 @@
 </script>
 <script type="text/javascript" src="{{ asset('bower_components/multiselect/js/jquery.multi-select.js') }}"></script>
 --}}
-<script type="text/javascript" src="{{ asset('js/jquery.quicksearch.js') }}"></script>
+{{-- <script type="text/javascript" src="{{ asset('js/jquery.quicksearch.js') }}"></script> --}}
 {{-- <script type="text/javascript" src="pages/advance-elements/select2-custom.js"></script> --}}
 <script>
     $(document).ready(function() {
-        $(".js-example-basic-single").select2();
+        $("#vehicleSelect").select2();
+
+        $("#vehicleSelect").on('change',function(e) {
+            e.preventDefault();
+            var vehicleID = $(this).val();
+            var url = "{{ route('vehicle.json',':vehicleID') }}";
+            url = url.replace(':vehicleID',vehicleID);
+            $.ajax({
+                    type: "GET",
+                    dataType: 'json',
+                    // url: "/dashboard/vehicles/getVehicle/"+vehicleID,
+                    url: url,
+                    success: function (response) {
+                        var vehicleTare = response.vehicle.tare;
+                        setNetWeight(vehicleTare);
+                    }
+                }
+            );
+
+        });
+       
+        function setNetWeight(tare) {
+            $("#grossWeight").keyup(function() {
+            var grossWeightVal = $(this).val();
+            var netWeight = parseFloat(grossWeightVal-tare);
+            $("#netWeight").val(netWeight);
+        });
+        }
+        
 	});
 </script>
 @endpush
