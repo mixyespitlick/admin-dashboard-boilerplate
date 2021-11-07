@@ -48,57 +48,65 @@
         <ul class="pcoded-item pcoded-left-item">
             <li class="">
                 <a href="{{ route('drivers.index') }}" data-i18n="nav.form-wizard.main">
-                    <span class="pcoded-micon"><i class="ti-archive"></i></span>
+                    <span class="pcoded-micon"><i class="ti-user"></i></span>
                     <span class="pcoded-mtext">Drivers</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li class="">
                 <a href="{{ route('vehicle_types.index') }}" data-i18n="nav.form-wizard.main">
-                    <span class="pcoded-micon"><i class="ti-archive"></i></span>
+                    <span class="pcoded-micon"><i class="ti-truck"></i></span>
                     <span class="pcoded-mtext">Vehicle Types</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li class="">
+                <a href="{{ route('vehicles.index') }}" data-i18n="nav.form-wizard.main">
+                    <span class="pcoded-micon"><i class="ti-truck"></i></span>
+                    <span class="pcoded-mtext">Vehicles</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+
+            <li class="">
                 <a href="{{ route('service_provider_types.index') }}" data-i18n="nav.form-wizard.main">
-                    <span class="pcoded-micon"><i class="ti-archive"></i></span>
+                    <span class="pcoded-micon"><i class="ti-home"></i></span>
                     <span class="pcoded-mtext">Service Provider Types</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li class="">
                 <a href="{{ route('service_providers.index') }}" data-i18n="nav.form-wizard.main">
-                    <span class="pcoded-micon"><i class="ti-archive"></i></span>
+                    <span class="pcoded-micon"><i class="ti-medall"></i></span>
                     <span class="pcoded-mtext">Service Providers</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li class="">
-                <a href="{{ route('collection_points.index') }}" data-i18n="nav.form-wizard.main">
-                    <span class="pcoded-micon"><i class="ti-archive"></i></span>
-                    <span class="pcoded-mtext">Collection Points</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-            </li>
-            <li class="">
                 <a href="{{ route('areas.index') }}" data-i18n="nav.form-wizard.main">
-                    <span class="pcoded-micon"><i class="ti-archive"></i></span>
+                    <span class="pcoded-micon"><i class="ti-map"></i></span>
                     <span class="pcoded-mtext">Areas</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li class="">
-                <a href="{{ route('vehicles.index') }}" data-i18n="nav.form-wizard.main">
-                    <span class="pcoded-micon"><i class="ti-archive"></i></span>
-                    <span class="pcoded-mtext">Vehicles</span>
+                <a href="{{ route('collection_points.index') }}" data-i18n="nav.form-wizard.main">
+                    <span class="pcoded-micon"><i class="ti-location-pin"></i></span>
+                    <span class="pcoded-mtext">Collection Points</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li class="">
                 <a href="{{ route('weigh_in_logs.index') }}" data-i18n="nav.form-wizard.main">
-                    <span class="pcoded-micon"><i class="ti-archive"></i></span>
+                    <span class="pcoded-micon"><i class="ti-book"></i></span>
                     <span class="pcoded-mtext">Weigh-in Logs</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class="">
+                <a href="{{ route('tipping_fees.index') }}" data-i18n="nav.form-wizard.main">
+                    <span class="pcoded-micon"><i class="ti-receipt"></i></span>
+                    <span class="pcoded-mtext">Tipping Fees</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>

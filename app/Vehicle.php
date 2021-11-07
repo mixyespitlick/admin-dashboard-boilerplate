@@ -15,6 +15,6 @@ class Vehicle extends Model
 
     public function weighInLogs()
     {
-        return $this->hasMany(WeighInLog::class);
+        return $this->hasMany(WeighInLog::class); 
     }
 }

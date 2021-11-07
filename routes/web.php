@@ -38,6 +38,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::resource('/weigh_in_logs', 'WeighInLogController');
     Route::get('/vehicles/getVehicle/{id}', 'VehicleController@getVehicle')->name('vehicle.json');
     Route::resource('/vehicles', 'VehicleController');
+    Route::resource('/tipping_fees', 'TippingFeeController');
 });
 
 Route::group(['prefix' => 'products', 'middleware' => 'auth'], function () {

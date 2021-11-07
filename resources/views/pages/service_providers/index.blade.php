@@ -93,7 +93,7 @@
                                         {{ $serviceProvider->address }}
                                     </td>
                                     <td>
-                                        {{ $serviceProvider->serviceProviderTypes->name }}
+                                        {{ $serviceProvider->serviceProviderType->name }}
                                     </td>
                                     <td>
                                         {{ $serviceProvider->status ? 'Enabled' : 'Disabled'}}

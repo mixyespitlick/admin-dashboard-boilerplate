@@ -51,12 +51,12 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-sm-10">
-                            <h5>WEIGH-IN LOGS</h5>
-                            <span>List of Weigh-in logs</span>
+                            <h5>TIPPING FEES</h5>
+                            <span>List of Tipping Fees</span>
                         </div>
                         <div class="col-sm-2 text-right">
                             {{-- <i class="icofont icofont-ui-edit"></i> --}}
-                            <a href="{{ route('weigh_in_logs.create') }}" class="btn btn-sm btn-primary">
+                            <a href="{{ route('tipping_fees.create') }}" class="btn btn-sm btn-primary">
                                 Create
                             </a>
                         </div>
@@ -68,17 +68,9 @@
                             <thead>
                                 <tr>
                                     <th> No. </th>
-                                    <th>OR No.</th>
-                                    <th>Date </th>
-                                    <th>Time </th>
-                                    <th> Driver </th>
-                                    <th> Vehicle </th>
-                                    <th> Service Provider </th>
-                                    <th> Added By </th>
-                                    <th>Collection Point</th>
-
-                                    <th>Net Weight</th>
-                                    {{-- <th>Status</th> --}}
+                                    <th> Control No. </th>
+                                    <th> Amount Payable </th>
+                                    <th>Status</th>
                                     <th> Action </th>
                                 </tr>
                             </thead>
@@ -86,44 +78,22 @@
                                 @php
                                 $i=0
                                 @endphp
-                                @foreach($weighInLogs as $weighInLog)
+                                @foreach($tipping_fees as $tipping_fee)
                                 <tr>
                                     <td>{{ ++$i }}</td>
                                     <td>
-                                        {{ $weighInLog->or_no }}
+                                        {{ $tipping_fee->control_no}}
                                     </td>
                                     <td>
-                                        {{ $weighInLog->created_at->format('m-d-Y')}}
+                                        {{ $tipping_fee->amount_payable}}
                                     </td>
                                     <td>
-                                        {{ $weighInLog->created_at->format('h:m A')}}
+                                        {{ $tipping_fee->status ? 'Enabled' : 'Disabled'}}
                                     </td>
                                     <td>
-                                        {{ $weighInLog->driver->fname}}
-                                    </td>
-                                    <td>
-                                        {{ $weighInLog->vehicle->plate_no}}
-                                    </td>
-                                    <td>
-                                        {{ $weighInLog->serviceProvider->name }}
-                                    </td>
-                                    <td>
-                                        {{ $weighInLog->user->name }}
-                                    </td>
-                                    <td>
-                                        {{ $weighInLog->collectionPoint->name }}
-                                    </td>
-
-                                    <td>
-                                        {{ $weighInLog->net_weight }}
-                                    </td>
-                                    {{-- <td>
-                                        {{ $weighInLog->status ? 'Enabled' : 'Disabled'}}
-                                    </td> --}}
-                                    <td>
-                                        <form action="{{ route('weigh_in_logs.destroy',$weighInLog->id) }}"
+                                        <form action="{{ route('tipping_fees.destroy',$tipping_fee->id) }}"
                                             method="POST">
-                                            <a href="{{ route('weigh_in_logs.edit',$weighInLog->id) }}"
+                                            <a href="{{ route('tipping_fees.edit',$tipping_fee->id) }}"
                                                 class="btn btn-sm btn-warning m-r-5">
                                                 <i class="icofont icofont-ui-edit"></i>
                                             </a>
