@@ -12,4 +12,10 @@ class Driver extends Model
     {
         return $this->hasMany(WeighInLog::class);
     }
+
+    public function getCustomFullName()
+    {
+        $firstCharacter = substr($this->fname, 0, 1);
+        return strtoupper($firstCharacter) . '. ' . strtoupper($this->lname);
+    }
 }

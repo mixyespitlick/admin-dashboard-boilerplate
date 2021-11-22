@@ -86,30 +86,13 @@
                                 </select>
                             </div>
                         </div>
-                        {{-- <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Vehicle Type</label>
-                            <div class="col-sm-10">
-                                <select name="vehicle_type_id" class="form-control form-control-default"
-                                    placeholder="Select Type">
-                                    <option value="">Select Vehicle Type </option>
-                                    @foreach ($vehicleTypes as $vehicleType)
-                                    <option value="{{ $vehicleType->id }}">{{ $vehicleType->name }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div> --}}
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Collection Point</label>
                             <div class="col-sm-10">
-                                <select name="collection_point_id" class="form-control form-control-default"
-                                    placeholder="Select Type">
-                                    <option value="">Select Vehicle Type </option>
-                                    @foreach ($collectionPoints as $collectionPoint)
-                                    <option value="{{ $collectionPoint->id }}">{{ $collectionPoint->name }}
-                                    </option>
-                                    @endforeach
-                                </select>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="text" name="collection_point"
+                                        value="{{ old('collection_point') }}">
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">

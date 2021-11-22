@@ -15,12 +15,14 @@ class CreateVehiclesTable extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('vehicle_type_id');
+            $table->unsignedBigInteger('vehicle_type_id');
             $table->string('plate_no');
             $table->string('body_no');
             $table->integer('tare');
             $table->tinyInteger('status')->default('0');
             $table->timestamps();
+
+            $table->foreign('vehicle_type_id')->references('id')->on('vehicle_types')->onUpdate('cascade');
         });
     }
 

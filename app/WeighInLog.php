@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class WeighInLog extends Model
 {
     protected $table = 'weighin_logs';
-    protected $fillable = ['driver_id', 'vehicle_id', 'service_provider_id', 'user_id', 'collection_point_id', 'or_no', 'gross_weight', 'net_weight'];
+    protected $fillable = ['driver_id', 'vehicle_id', 'service_provider_id', 'user_id', 'or_no', 'gross_weight', 'net_weight'];
 
     public function driver()
     {
@@ -17,10 +17,6 @@ class WeighInLog extends Model
     public function serviceProvider()
     {
         return $this->belongsTo(ServiceProvider::class, 'service_provider_id', 'id');
-    }
-    public function collectionPoint()
-    {
-        return $this->belongsTo(CollectionPoint::class, 'collection_point_id', 'id');
     }
 
     public function vehicle()

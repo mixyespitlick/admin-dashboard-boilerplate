@@ -24,6 +24,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('/', 'DashboarController@index')->name('dashboard');
     Route::get('/drivers/getDriver/{id}', 'DriverController@getDriver')->name('driver.json');
+    Route::get('/drivers/import', 'DriverController@import')->name('drivers.import');
+    Route::post('/drivers/store_import', 'DriverController@storeImport')->name('drivers.store_import');
     Route::resource('/drivers', 'DriverController');
     // Route::get('/drivers', 'DriverController@index')->name('driver.index');
     // Route::get('/drivers/create', 'DriverController@create')->name('driver.create');
@@ -38,7 +40,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::resource('/weigh_in_logs', 'WeighInLogController');
     Route::get('/vehicles/getVehicle/{id}', 'VehicleController@getVehicle')->name('vehicle.json');
     Route::resource('/vehicles', 'VehicleController');
+    Route::get('/tipping_fees/delete/{id}', 'DriverController@delete')->name('tipping_fees.delete');
     Route::resource('/tipping_fees', 'TippingFeeController');
+    Route::get('/payments/generate/{id}', 'PaymentController@generate')->name('payments.generate');
+    Route::resource('/payments', 'PaymentController');
 });
 
 Route::group(['prefix' => 'products', 'middleware' => 'auth'], function () {

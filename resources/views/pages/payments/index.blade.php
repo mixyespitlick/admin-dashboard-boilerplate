@@ -51,57 +51,75 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-sm-10">
-                            <h5>DRIVERS</h5>
-                            <span>List of Drivers</span>
+                            <h5>PAYMENTS</h5>
+                            <span>List of payment logs</span>
                         </div>
                         <div class="col-sm-2 text-right">
                             {{-- <i class="icofont icofont-ui-edit"></i> --}}
-                            <a href="{{ route('drivers.create') }}" class="btn btn-sm btn-primary">
+                            <a href="{{ route('payments.create') }}" class="btn btn-sm btn-primary">
                                 Create
-                            </a>
-                            <a href="{{ route('drivers.import') }}" class="btn btn-sm btn-info">
-                                Import
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="card-block">
                     <div class="dt-responsive table-responsive">
-                        <table class="table table-striped table-bordered nowrap" id="driverTable">
+                        <table class="table table-bordered" cellspacing="0" id="serviceProviderType">
                             <thead>
                                 <tr>
-                                    <th> ID </th>
-                                    <th> First Name </th>
-                                    <th> Last Name </th>
+                                    <th> No. </th>
+                                    <th>Company Name</th>
+                                    <th>Control No</th>
+                                    <th>Amount Payable</th>
+                                    <th>CTO OR No</th>
+                                    <th>Amount Paid</th>
+                                    <th>Balance</th>
+                                    {{-- <th>Status</th> --}}
                                     <th> Action </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
-                        foreach($drivers as $driver) : ?>
+                                @php
+                                $i=0
+                                @endphp
+                                @foreach($payments as $payment)
                                 <tr>
+                                    <td>{{ ++$i }}</td>
                                     <td>
-                                        <?php echo $driver['id']; ?>
+                                        {{ $payment->name }}
                                     </td>
                                     <td>
-                                        <?php echo $driver['fname']; ?>
+                                        {{ $payment->control_no }}
                                     </td>
                                     <td>
-                                        <?php echo $driver['lname']; ?>
+                                        {{ $payment->amount_payable }}
+                                    </td>
+
+                                    <td>
+                                        {{ $payment->or_no }}
                                     </td>
                                     <td>
-                                        <form action="{{ route('drivers.destroy',$driver->id) }}" method="POST">
-                                            <a href="{{ route('drivers.edit',$driver->id) }}"
-                                                class="btn btn-sm btn-warning">
-                                                Edit
-                                            </a>
+                                        {{ $payment->amount_paid }}
+                                    </td>
+                                    <td>
+                                        {{ $payment->balance }}
+                                    </td>
+                                    <td>
+                                        @if ($payment->id)
+                                        <a href="{{ route('payments.edit',$payment->id) }}"
+                                            class="btn btn-sm btn-warning m-r-5">
+                                            <i class="icofont icofont-ui-edit"></i>
+                                        </a>
+                                        @endif
+                                        {{-- <form action="{{ route('payments.destroy',$payment->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-sm btn-danger" type="submit">Delete</button>
-                                        </form>
+                                            <button class="btn btn-sm btn-danger" type="submit"><i
+                                                    class="icofont icofont-delete-alt"></i></button>
+                                        </form> --}}
                                     </td>
                                 </tr>
-                                <?php endforeach; ?>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -128,7 +146,7 @@
 {{-- <script src="{{ asset('pages/data-table/js/data-table-custom.js') }}"></script> --}}
 <script>
     $(document).ready(function() {
-    	$('#driverTable').DataTable();
+    	$('#serviceProviderType').DataTable();
 	});
 </script>
 @endpush

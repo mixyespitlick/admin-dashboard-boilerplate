@@ -4,7 +4,7 @@
 <!-- Page Heading -->
 <div class="page-header">
     <div class="page-header-title">
-        <h4>Add Drivers</h4>
+        <h4>Import Drivers</h4>
         {{-- <span>List of Drivers</span> --}}
     </div>
     <div class="page-header-breadcrumb">
@@ -38,7 +38,8 @@
 
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ route('drivers.index') }}" class="btn btn-sm btn-warning">Back</a>
+                    <a href="{{ route('drivers.index') }}" class="btn btn-sm btn-outline-primary"><i
+                            class="icofont icofont-arrow-left"></i></a>
                     {{-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
                     {{-- <div class="card-header-right">
                         <i class="icofont icofont-rounded-down"></i>
@@ -47,31 +48,19 @@
                     </div> --}}
                 </div>
                 <div class="card-block">
-                    <form action="{{ route('drivers.import') }}" method="POST">
+                    <form action="{{ route('drivers.store_import') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">First Name</label>
+                            <label class="col-sm-2 col-form-label">Choose file</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="fname" value="{{ old('fname') }}">
+                                <input class="form-control" type="file" name="file">
                             </div>
                             {{-- {!! $errors->first('first_name', '<small class="text-danger">:message</small>') !!}
                             --}}
                         </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Last Name</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="lname" value="{{ old('lname') }}" class="form-control">
-                            </div>
-                        </div>
-                        {{-- <div class="form-group row">
-                            <label class="col-sm-2"></label>
-                            <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary m-b-0">Save</button>
-                            </div>
-                        </div> --}}
                 </div>
                 <div class="card-footer text-right">
-                    <button type "submit" class="btn btn-sm btn-primary m-r-10">Submit</button>
+                    <button type "submit" class="btn btn-sm btn-primary m-r-10">Import</button>
                     <button type="reset" class="btn btn-sm btn-warning">Reset</button>
                 </div>
                 </form>

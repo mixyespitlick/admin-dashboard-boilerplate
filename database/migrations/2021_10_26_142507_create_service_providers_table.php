@@ -15,12 +15,14 @@ class CreateServiceProvidersTable extends Migration
     {
         Schema::create('service_providers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('service_provider_type_id');
+            $table->unsignedBigInteger('service_provider_type_id');
             $table->string('name');
             $table->string('company');
             $table->string('address');
             $table->tinyInteger('status')->default('0');
             $table->timestamps();
+
+            $table->foreign('service_provider_type_id')->refences('id')->on('service_provider_types')->onUpdate('cascade');
         });
     }
 

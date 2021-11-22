@@ -15,16 +15,18 @@ class CreateWeighinLogsTable extends Migration
     {
         Schema::create('weighin_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('driver_id');
-            $table->bigInteger('vehicle_id');
-            $table->bigInteger('service_provider_id');
-            $table->bigInteger('user_id');
-            $table->bigInteger('collection_point_id');
+            $table->unsignedBigInteger('driver_id');
+            $table->unsignedBigInteger('vehicle_id');
+            $table->unsignedBigInteger('service_provider_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('collection_point_id')->nullable();
             $table->bigInteger('or_no')->nullable();
             $table->integer('gross_weight');
             $table->integer('net_weight');
             $table->tinyInteger('status')->default('0');
             $table->timestamps();
+
+
         });
     }
 

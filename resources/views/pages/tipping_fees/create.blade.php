@@ -75,7 +75,7 @@
                             <div class="col-sm-10">
                                 <select name="vehicle_id" class="form-control form-control-default"
                                     placeholder="Select Driver" id="vehicleSelect">
-                                    <option value="">Select Vehicle Type </option>
+                                    <option value="">Select Vehicle </option>
                                     @foreach ($vehicles as $vehicle)
                                     <option value="{{ $vehicle->id }}">{{ $vehicle->plate_no}}
                                     </option>
@@ -96,20 +96,6 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Collection Point</label>
-                            <div class="col-sm-10">
-                                <select name="collection_point_id" class="form-control form-control-default"
-                                    placeholder="Select Type" id="collectionPointSelect">
-                                    <option value="">Select Vehicle Type </option>
-                                    @foreach ($collectionPoints as $collectionPoint)
-                                    <option value="{{ $collectionPoint->id }}">{{ $collectionPoint->name }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Gross Weight</label>
                             <div class="col-sm-10">
@@ -178,7 +164,6 @@
         $("#driverSelect").select2();
         $("#vehicleSelect").select2();
         $("#serviceProviderSelect").select2();
-        $("#collectionPointSelect").select2();
 
         $("#vehicleSelect").on('change',function(e) {
             e.preventDefault();

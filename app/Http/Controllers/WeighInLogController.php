@@ -33,9 +33,8 @@ class WeighInLogController extends Controller
         $drivers = Driver::all();
         $vehicles = Vehicle::all();
         $serviceProviders = ServiceProvider::all();
-        $collectionPoints = CollectionPoint::all();
         $id = Auth::id();
-        return view('pages.weigh_in_logs.create', compact('drivers', 'vehicles', 'serviceProviders', 'collectionPoints', 'id'));
+        return view('pages.weigh_in_logs.create', compact('drivers', 'vehicles', 'serviceProviders', 'id'));
     }
 
     /**
@@ -51,7 +50,6 @@ class WeighInLogController extends Controller
             'driver_id' => 'required',
             'vehicle_id' => 'required',
             'service_provider_id' => 'required',
-            'collection_point_id' => 'required',
             'or_no' => 'required',
             'gross_weight' => 'required',
             'net_weight' => 'required',

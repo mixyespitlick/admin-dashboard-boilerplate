@@ -34,15 +34,13 @@ class TippingFeeController extends Controller
     {
         $drivers = Driver::all();
         $vehicles = Vehicle::all();
-        $serviceProviders = ServiceProvider::all();
-        $collectionPoints = CollectionPoint::all();
-
+        $serviceProviders = ServiceProvider::whereNotIn('service_provider_type_id', [1])->get();
         $today = date('Ymd');
         $currentRowCount = TippingFee::whereDate('created_at', Carbon::today())->count();
         $incrementedCurrentRowCount = $currentRowCount + 1;
 
         $controlNo = $today . "-" . str_pad($incrementedCurrentRowCount, 5, 0, STR_PAD_LEFT);
-        return view('pages.tipping_fees.create', compact('drivers', 'vehicles', 'serviceProviders', 'collectionPoints', 'controlNo'));
+        return view('pages.tipping_fees.create', compact('drivers', 'vehicles', 'serviceProviders', 'controlNo'));
     }
 
     /**
@@ -58,7 +56,6 @@ class TippingFeeController extends Controller
             'driver_id' => 'required',
             'vehicle_id' => 'required',
             'service_provider_id' => 'required',
-            'collection_point_id' => 'required',
             'gross_weight' => 'required',
             'net_weight' => 'required',
             'amount_payable' => 'required'
@@ -83,7 +80,6 @@ class TippingFeeController extends Controller
             'driver_id' => $request['driver_id'],
             'vehicle_id' => $request['vehicle_id'],
             'service_provider_id' => $request['service_provider_id'],
-            'collection_point_id' => $request['collection_point_id'],
             'gross_weight' => $request['gross_weight'],
             'net_weight' => $request['net_weight'],
             'user_id' => $id
@@ -145,8 +141,18 @@ class TippingFeeController extends Controller
      * @param  \App\TippingFee  $tippingFee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TippingFee $tippingFee)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->id;
+        $tippingFee = TippingFee::find($id);
+        $tippingFee->delete();
+        return redirect()->route('tipping_fees.index')->with('success', 'Record successfully deleted!');
+    }
+
+    public function delete($id)
+    {
+        $tipping_fee = TippingFee::find($id);
+
+        return view('pages.tipping_fees.delete', compact('tipping_fee'));
     }
 }

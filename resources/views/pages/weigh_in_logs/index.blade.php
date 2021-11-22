@@ -75,8 +75,6 @@
                                     <th> Vehicle </th>
                                     <th> Service Provider </th>
                                     <th> Added By </th>
-                                    <th>Collection Point</th>
-
                                     <th>Net Weight</th>
                                     {{-- <th>Status</th> --}}
                                     <th> Action </th>
@@ -110,10 +108,6 @@
                                     <td>
                                         {{ $weighInLog->user->name }}
                                     </td>
-                                    <td>
-                                        {{ $weighInLog->collectionPoint->name }}
-                                    </td>
-
                                     <td>
                                         {{ $weighInLog->net_weight }}
                                     </td>

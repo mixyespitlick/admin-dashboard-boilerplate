@@ -91,21 +91,29 @@
                                         {{ $tipping_fee->status ? 'Enabled' : 'Disabled'}}
                                     </td>
                                     <td>
-                                        <form action="{{ route('tipping_fees.destroy',$tipping_fee->id) }}"
+                                        <a href="{{ route('tipping_fees.edit',$tipping_fee->id) }}"
+                                            class="btn btn-sm btn-warning m-r-5" data-toggle="tooltip"
+                                            data-placement="top" title="Edit">
+                                            <i class="icofont icofont-ui-edit"></i>
+                                        </a>
+                                        {{-- <a href="{{ route('payments.generate',$tipping_fee->id) }}"
+                                            class="btn btn-sm btn-info m-r-5" data-toggle="tooltip" data-placement="top"
+                                            title="Pay">
+                                            <i class="icofont icofont-cur-peso-true"></i>
+                                        </a> --}}
+                                        <a href="#" data-id={{$tipping_fee->id}}
+                                            class="btn btn-sm btn-danger delete"
+                                            data-toggle="modal"
+                                            data-target="#deleteModal"><i class="icofont icofont-delete-alt"></i></a>
+                                        {{-- <form action="{{ route('tipping_fees.destroy',$tipping_fee->id) }}"
                                             method="POST">
-                                            <a href="{{ route('tipping_fees.edit',$tipping_fee->id) }}"
-                                                class="btn btn-sm btn-warning m-r-5">
-                                                <i class="icofont icofont-ui-edit"></i>
-                                            </a>
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-sm btn-danger" type="submit"><i
+                                            <button class="btn btn-sm btn-danger" type="submit" data-toggle="tooltip"
+                                                data-placement="top" title="Delete"><i
                                                     class="icofont icofont-delete-alt"></i></button>
-                                            {{-- <button class="btn btn-sm-danger" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Delete"
-                                                type="submit"><i class="icofont icofont-delete-alt"></i></button>
-                                            --}}
-                                        </form>
+                                        </form> --}}
+
                                     </td>
                                 </tr>
                                 @endforeach
@@ -113,6 +121,32 @@
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <!-- Delete Warning Modal -->
+    <div class="modal modal-danger fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="Delete"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete Record</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('tipping_fees.destroy', 'id') }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <input id="id" name="id" hidden value="">
+                        <h5 class="text-center">Are you sure you want to delete this record?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-sm btn-danger">Yes, Delete Record</button>
+                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -136,6 +170,11 @@
 <script>
     $(document).ready(function() {
     	$('#serviceProviderType').DataTable();
-	});
+
+        $(document).on('click','.delete',function(){
+             let id = $(this).attr('data-id');
+             $('#id').val(id);
+        });
+    });
 </script>
 @endpush
