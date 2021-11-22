@@ -1,104 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- Mirrored from flatable.phoenixcoded.net/default/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jan 2019 11:25:26 GMT -->
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+  <title>Flat Able - Premium Admin Template by Phoenixcoded</title>
 
-    <title>SB Admin 2 - Dashboard</title>
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-    <!-- Custom fonts for this template-->
-    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css" />
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content="Phoenixcoded" />
+  <meta name="keywords"
+    content=", Flat ui, Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app" />
+  <meta name="author" content="Phoenixcoded" />
 
-    <!-- Custom styles for this template-->
-    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet" />
-    @stack('styles')
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet" />
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.') }}css" />
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('icon/themify-icons/themify-icons.css') }}" />
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('icon/icofont/css/icofont.css') }}" />
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('pages/flag-icon/flag-icon.min.css') }}" />
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('pages/menu-search/css/component.css') }}" />
+
+  @stack('styles')
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('pages/dashboard/horizontal-timeline/css/style.css') }}" />
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('pages/dashboard/amchart/css/amchart.css') }}" />
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('pages/flag-icon/flag-icon.min.css') }}" />
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/color/color-1.css') }}" id="color" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/linearicons.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/simple-line-icons.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/ionicons.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.mCustomScrollbar.css') }}" />
+
 </head>
 
-<body id="page-top">
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-        <!-- Sidebar -->
-        @include('partials.sidebar')
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-            <!-- Main Content -->
-            <div id="content">
-                <!-- Topbar -->
-                @include('partials.navbar')
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-                    <!-- Page Heading -->
-                    @yield('content')
-                </div>
-                <!-- /.container-fluid -->
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            @include('partials.footer')
-            <!-- End of Footer -->
-        </div>
-        <!-- End of Content Wrapper -->
+<body>
+  <div class="theme-loader">
+    <div class="ball-scale">
+      <div></div>
     </div>
-    <!-- End of Page Wrapper -->
+  </div>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+  <div id="pcoded" class="pcoded">
+    <div class="pcoded-overlay-box"></div>
+    <div class="pcoded-container navbar-wrapper">
+      {{-- Chat --}}
+      @include('partials.navbar')
+      {{-- End of Chat --}}
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
+      {{-- Sidebar --}}
+      @include('partials.chat')
+      {{-- End of Sidebar --}}
+
+      <div class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+          {{-- Sidebar --}}
+          @include('partials.sidebar')
+          {{-- End of Sidebar --}}
+          <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+              <div class="main-body">
+                <div class="page-wrapper">
+                  @yield('content')
                 </div>
-                <div class="modal-body">
-                    Select "Logout" below if you are ready to end your current session.
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">
-                        Cancel
-                    </button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
+                <div id="styleSelector"></div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <!--[if lt IE 9]>
+      <div class="ie-warning">
+        <h1>Warning!!</h1>
+        <p>
+          You are using an outdated version of Internet Explorer, please upgrade
+          <br />to any of the following web browsers to access this website.
+        </p>
+        <div class="iew-container">
+          <ul class="iew-download">
+            <li>
+              <a href="http://www.google.com/chrome/">
+                <img src="assets/images/browser/chrome.png" alt="Chrome" />
+                <div>Chrome</div>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.mozilla.org/en-US/firefox/new/">
+                <img src="assets/images/browser/firefox.png" alt="Firefox" />
+                <div>Firefox</div>
+              </a>
+            </li>
+            <li>
+              <a href="http://www.opera.com">
+                <img src="assets/images/browser/opera.png" alt="Opera" />
+                <div>Opera</div>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.apple.com/safari/">
+                <img src="assets/images/browser/safari.png" alt="Safari" />
+                <div>Safari</div>
+              </a>
+            </li>
+            <li>
+              <a
+                href="http://windows.microsoft.com/en-us/internet-explorer/download-ie"
+              >
+                <img src="assets/images/browser/ie.png" alt="" />
+                <div>IE (9 & above)</div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <p>Sorry for the inconvenience!</p>
+      </div>
+    <![endif]-->
 
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+  <script src="{{ asset('bower_components/jquery-ui/jquery-ui.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bower_components/tether/dist/js/tether.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bower_components/jquery-slimscroll/jquery.slimscroll.js') }}">
+  </script>
 
-    <!-- Page level plugins -->
-    <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bower_components/modernizr/modernizr.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bower_components/modernizr/feature-detects/css-scrollbars.js') }}">
+  </script>
 
-    <!-- Page level custom scripts -->
-    <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
-    @stack('scripts')
+  <script type="text/javascript" src="{{ asset('bower_components/classie/classie.js') }}"></script>
+
+  <script src="{{ asset('bower_components/d3/d3.js') }}"></script>
+  <script src="{{ asset('bower_components/rickshaw/rickshaw.js') }}"></script>
+
+  <script src="{{ asset('bower_components/raphael/raphael.min.js') }}"></script>
+  <script src="{{ asset('bower_components/morris.js/morris.js') }}"></script>
+
+  <script type="{{ asset('text/javascript" src="pages/dashboard/horizontal-timeline/js/main.js') }}"></script>
+
+  <script type="text/javascript" src="{{ asset('pages/dashboard/amchart/js/amcharts.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('pages/dashboard/amchart/js/serial.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('pages/dashboard/amchart/js/light.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('pages/dashboard/amchart/js/custom-amchart.js') }}"></script>
+
+  <script type="text/javascript" src="{{ asset('bower_components/i18next/i18next.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bower_components/i18next-xhr-backend/i18nextXHRBackend.min.js') }}">
+  </script>
+  <script type="text/javascript"
+    src="{{ asset('bower_components/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js') }}">
+  </script>
+  <script type="text/javascript" src="{{ asset('bower_components/jquery-i18next/jquery-i18next.min.js') }}"></script>
+
+  <script type="text/javascript" src="{{ asset('pages/dashboard/custom-dashboard.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+
+  <script src="{{ asset('js/pcoded.min.js') }}"></script>
+  <script src="{{ asset('js/demo-12.js') }}"></script>
+  <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+  <script src="{{ asset('js/jquery.mousewheel.min.js') }}"></script>
+  @stack('scripts')
 </body>
+
+<!-- Mirrored from flatable.phoenixcoded.net/default/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jan 2019 11:30:25 GMT -->
 
 </html>

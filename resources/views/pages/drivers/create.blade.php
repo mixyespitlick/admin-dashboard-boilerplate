@@ -2,44 +2,82 @@
 
 @section('content')
 <!-- Page Heading -->
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Add Driver</h1>
-    <a href="{{ route('driver.index') }}" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
-            class="fas fa-backward fa-sm text-white-50"></i> Back</a>
+<div class="page-header">
+    <div class="page-header-title">
+        <h4>Add Drivers</h4>
+        {{-- <span>List of Drivers</span> --}}
+    </div>
+    <div class="page-header-breadcrumb">
+        <ul class="breadcrumb-title">
+            <li class="breadcrumb-item">
+                <a href="index-2.html">
+                    <i class="icofont icofont-home"></i>
+                </a>
+            </li>
+            <li class="breadcrumb-item"><a href="#!">Data Table</a>
+            </li>
+            <li class="breadcrumb-item"><a href="#!">Basic Initialization</a>
+            </li>
+        </ul>
+    </div>
 </div>
 
 <!-- Content Row -->
-<div class="row">
-    <div class="col-lg-6">
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
-        <div class="card mb-4 py-3 border-bottom-primary">
-            <div class="card-body">
-                <form action="{{ route('driver.store') }}" method="POST">
-                    @csrf
-                    <div class="for-group mb-3">
-                        <label>First Name</label>
-                        <input type="text" name="fname" class="form-control">
-                        {{-- {!! $errors->first('first_name', '<small class="text-danger">:message</small>') !!} --}}
-                    </div>
-                    <div class="for-group mb-3">
-                        <label>Last Name</label>
-                        <input type="text" name="lname" class="form-control">
-                    </div>
-                    <div class="for-group mb-3">
-                        <button type="submit" class="btn btn-sm btn-primary">Save</button>
-                    </div>
+<div class="page-body">
+    <div class="row">
+        <div class="col-sm-6">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
+            <div class="card">
+                <div class="card-header">
+                    <a href="{{ route('drivers.index') }}" class="btn btn-sm btn-warning">Back</a>
+                    {{-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
+                    {{-- <div class="card-header-right">
+                        <i class="icofont icofont-rounded-down"></i>
+                        <i class="icofont icofont-refresh"></i>
+                        <i class="icofont icofont-close-circled"></i>
+                    </div> --}}
+                </div>
+                <div class="card-block">
+                    <form action="{{ route('drivers.import') }}" method="POST">
+                        @csrf
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">First Name</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" name="fname" value="{{ old('fname') }}">
+                            </div>
+                            {{-- {!! $errors->first('first_name', '<small class="text-danger">:message</small>') !!}
+                            --}}
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Last Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="lname" value="{{ old('lname') }}" class="form-control">
+                            </div>
+                        </div>
+                        {{-- <div class="form-group row">
+                            <label class="col-sm-2"></label>
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary m-b-0">Save</button>
+                            </div>
+                        </div> --}}
+                </div>
+                <div class="card-footer text-right">
+                    <button type "submit" class="btn btn-sm btn-primary m-r-10">Submit</button>
+                    <button type="reset" class="btn btn-sm btn-warning">Reset</button>
+                </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+</div>
 @endsection
-

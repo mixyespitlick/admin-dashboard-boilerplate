@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Driver;
+use App\Imports\DriverImport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DriverController extends Controller
 {
@@ -95,5 +97,35 @@ class DriverController extends Controller
     {
         $driver->delete();
         return redirect()->route('drivers.index')->with('success', 'Driver deleted successfully');
+    }
+
+    //Other functions
+    public function getDriver($id)
+    {
+        $driver = Driver::find($id);
+        if ($driver) {
+            return response()->json(['status' => 200, 'vehicle' => $driver]);
+        } else {
+            return response()->json(['status' => 404, 'message' => 'Driver not found']);
+        }
+    }
+
+    public function import()
+    {
+        return view('pages.drivers.import');
+    }
+
+    public function storeImport(Request $request)
+    {
+        $request->validate([
+            'file' => 'required'
+        ]);
+
+        $import = Excel::import(new DriverImport, $request->file('file'));
+        if ($import) {
+            return redirect()->route('drivers.index')->with('success', 'Drivers imported succesfully!');
+        } else {
+            return redirect()->route('drivers.index')->with('status', 'Drivers failed to import!');
+        }
     }
 }
