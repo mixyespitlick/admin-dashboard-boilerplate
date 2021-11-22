@@ -26,7 +26,11 @@ class CreateWeighinLogsTable extends Migration
             $table->tinyInteger('status')->default('0');
             $table->timestamps();
 
-
+            $table->foreign('driver_id')->references('id')->on('drivers')->onUpdate('cascade');
+            $table->foreign('vehicle_id')->references('id')->on('vehicles')->onUpdate('cascade');
+            $table->foreign('service_provider_id')->references('id')->on('service_providers')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
+            $table->foreign('collection_point_id')->references('id')->on('collection_points')->onUpdate('cascade');
         });
     }
 
