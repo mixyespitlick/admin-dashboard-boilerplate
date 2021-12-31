@@ -18,7 +18,12 @@ class CreateAreasTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->tinyInteger('status')->default('0');
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();
+
+            $table->foreign('created_by')->references('id')->on('users')->onUpdate('cascade');
+            $table->foreign('updated_by')->references('id')->on('users')->onUpdate('cascade');
         });
     }
 

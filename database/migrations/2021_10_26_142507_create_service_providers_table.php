@@ -20,8 +20,12 @@ class CreateServiceProvidersTable extends Migration
             $table->string('company');
             $table->string('address');
             $table->tinyInteger('status')->default('0');
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();
 
+            $table->foreign('created_by')->references('id')->on('users')->onUpdate('cascade');
+            $table->foreign('updated_by')->references('id')->on('users')->onUpdate('cascade');
             $table->foreign('service_provider_type_id')->refences('id')->on('service_provider_types')->onUpdate('cascade');
         });
     }

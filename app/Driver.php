@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Wildside\Userstamps\Userstamps;
 
 class Driver extends Model
 {
+    use Userstamps;
     protected $fillable = ['fname', 'lname'];
 
     public function weighInLogs()

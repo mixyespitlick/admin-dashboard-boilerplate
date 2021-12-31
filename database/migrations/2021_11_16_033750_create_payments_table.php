@@ -21,8 +21,12 @@ class CreatePaymentsTable extends Migration
             $table->decimal('balance', 8, 2);
             $table->tinyInteger('is_partial')->default(0);
             $table->tinyInteger('status')->default(0);
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();
 
+            $table->foreign('created_by')->references('id')->on('users')->onUpdate('cascade');
+            $table->foreign('updated_by')->references('id')->on('users')->onUpdate('cascade');
             $table->foreign('tipping_fee_id')->references('id')->on('tipping_fees')->onUpdate('cascade');
         });
     }
