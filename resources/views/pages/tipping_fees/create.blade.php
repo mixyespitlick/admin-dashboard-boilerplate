@@ -61,13 +61,8 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Driver</label>
                             <div class="col-sm-10">
-                                <select name="driver_id" class="form-control form-control-default" id="driverSelect">
-                                    <option value="">Select Driver </option>
-                                    @foreach ($drivers as $driver)
-                                    <option value="{{ $driver->id }}">{{ $driver->fname}}
-                                    </option>
-                                    @endforeach
-                                </select>
+                                <input class="form-control" type="text" name="driver_name"
+                                    value="{{ old('driver_name') }}">
                             </div>
                         </div>
                         <div class="form-group row">

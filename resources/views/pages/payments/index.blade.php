@@ -86,13 +86,13 @@
                                 <tr>
                                     <td>{{ ++$i }}</td>
                                     <td>
-                                        {{ $payment->name }}
+                                        {{ $payment->tipping_fee->weighInLog->serviceProvider->name }}
                                     </td>
                                     <td>
-                                        {{ $payment->control_no }}
+                                        {{ $payment->tipping_fee->control_no }}
                                     </td>
                                     <td>
-                                        {{ $payment->amount_payable }}
+                                        {{ $payment->tipping_fee->amount_payable }}
                                     </td>
 
                                     <td>
@@ -105,12 +105,12 @@
                                         {{ $payment->balance }}
                                     </td>
                                     <td>
-                                        @if ($payment->id)
+
                                         <a href="{{ route('payments.edit',$payment->id) }}"
                                             class="btn btn-sm btn-warning m-r-5">
                                             <i class="icofont icofont-ui-edit"></i>
                                         </a>
-                                        @endif
+
                                         {{-- <form action="{{ route('payments.destroy',$payment->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')

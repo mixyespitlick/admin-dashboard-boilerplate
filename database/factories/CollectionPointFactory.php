@@ -2,13 +2,16 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Driver;
+use App\CollectionPoint;
 use Faker\Generator as Faker;
 
-$factory->define(Driver::class, function (Faker $faker) {
+$factory->define(CollectionPoint::class, function (Faker $faker) {
     return [
-        'fname' => $faker->firstName(),
-        'lname' => $faker->lastName(),
+        'area_id' => function () {
+            return App\Area::inRandomOrder()->first()->id;
+        },
+        'name' => $faker->unique()->streetName(),
+        'description' => $faker->streetName(),
         'created_by' => function () {
             return App\User::inRandomOrder()->first()->id;
         },

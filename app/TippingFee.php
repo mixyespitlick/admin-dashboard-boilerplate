@@ -12,4 +12,9 @@ class TippingFee extends Model
     {
         return $this->hasMany(Payment::class);
     }
+
+    public function weighInLog()
+    {
+        return $this->belongsTo(WeighInLog::class, 'weighin_log_id', 'id');
+    }
 }

@@ -47,13 +47,13 @@
             Management
         </div>
         <ul class="pcoded-item pcoded-left-item">
-            <li class="{{ request()->routeIs('drivers*') ? 'active' : '' }}">
+            {{-- <li class="{{ request()->routeIs('drivers*') ? 'active' : '' }}">
                 <a href="{{ route('drivers.index') }}" data-i18n="nav.form-wizard.main">
                     <span class="pcoded-micon"><i class="ti-user"></i></span>
                     <span class="pcoded-mtext">Drivers</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
-            </li>
+            </li> --}}
             <li class="{{ request()->routeIs('vehicle_types*') ? 'active' : '' }}">
                 <a href="{{ route('vehicle_types.index') }}" data-i18n="nav.form-wizard.main">
                     <span class="pcoded-micon"><i class="ti-truck"></i></span>

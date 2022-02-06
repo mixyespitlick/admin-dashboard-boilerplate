@@ -30,11 +30,12 @@ class WeighInLogController extends Controller
      */
     public function create()
     {
-        $drivers = Driver::all();
+        // $drivers = Driver::all();
         $vehicles = Vehicle::all();
         $serviceProviders = ServiceProvider::all();
+        $collectionPoints = CollectionPoint::all();
         $id = Auth::id();
-        return view('pages.weigh_in_logs.create', compact('drivers', 'vehicles', 'serviceProviders', 'id'));
+        return view('pages.weigh_in_logs.create', compact('vehicles', 'serviceProviders', 'collectionPoints', 'id'));
     }
 
     /**
@@ -45,17 +46,20 @@ class WeighInLogController extends Controller
      */
     public function store(Request $request)
     {
-        $id = Auth::id();
+        $user = Auth::user();
         $request->validate([
-            'driver_id' => 'required',
             'vehicle_id' => 'required',
             'service_provider_id' => 'required',
+            'collection_point_id' => 'required',
             'or_no' => 'required',
             'gross_weight' => 'required',
             'net_weight' => 'required',
         ]);
         $input = $request->all();
-        $input['user_id'] = $id;
+        $input['created_by'] = $user->id;
+
+        // dd($input);
+
         WeighInLog::create($input);
         return redirect()->route('weigh_in_logs.index')->with('success', 'Weigh-in log added successfully!');
     }
@@ -79,7 +83,11 @@ class WeighInLogController extends Controller
      */
     public function edit(WeighInLog $weighInLog)
     {
-        //
+
+        $vehicles = Vehicle::all();
+        $serviceProviders = ServiceProvider::all();
+        $collectionPoints = CollectionPoint::all();
+        return view('pages.weigh_in_logs.edit', compact('vehicles', 'serviceProviders', 'collectionPoints', 'weighInLog'));
     }
 
     /**
@@ -92,6 +100,22 @@ class WeighInLogController extends Controller
     public function update(Request $request, WeighInLog $weighInLog)
     {
         //
+        $user = Auth::user();
+        $request->validate([
+            'vehicle_id' => 'required',
+            'service_provider_id' => 'required',
+            'collection_point_id' => 'required',
+            'or_no' => 'required',
+            'gross_weight' => 'required',
+            'net_weight' => 'required',
+        ]);
+        $input = $request->all();
+        $input['updated_by'] = $user->id;
+
+        // dd($input);
+
+        $weighInLog->update($input);
+        return redirect()->route('weigh_in_logs.index')->with('success', 'Weigh-in log updated successfully!');
     }
 
     /**

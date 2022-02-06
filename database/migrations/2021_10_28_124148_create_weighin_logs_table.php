@@ -15,7 +15,8 @@ class CreateWeighinLogsTable extends Migration
     {
         Schema::create('weighin_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('driver_id');
+            // $table->unsignedBigInteger('driver_id');
+            $table->string('driver_name', 50)->nullable();
             $table->unsignedBigInteger('vehicle_id');
             $table->unsignedBigInteger('service_provider_id');
             $table->unsignedBigInteger('collection_point_id')->nullable();
@@ -29,7 +30,7 @@ class CreateWeighinLogsTable extends Migration
 
             $table->foreign('created_by')->references('id')->on('users')->onUpdate('cascade');
             $table->foreign('updated_by')->references('id')->on('users')->onUpdate('cascade');
-            $table->foreign('driver_id')->references('id')->on('drivers')->onUpdate('cascade');
+            // $table->foreign('driver_id')->references('id')->on('drivers')->onUpdate('cascade');
             $table->foreign('vehicle_id')->references('id')->on('vehicles')->onUpdate('cascade');
             $table->foreign('service_provider_id')->references('id')->on('service_providers')->onUpdate('cascade');
             $table->foreign('collection_point_id')->references('id')->on('collection_points')->onUpdate('cascade');

@@ -11,6 +11,7 @@ use App\WeighInLog;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TippingFeeController extends Controller
 {
@@ -21,8 +22,20 @@ class TippingFeeController extends Controller
      */
     public function index()
     {
-        $tipping_fees = TippingFee::all();
+        // $tipping_fees = TippingFee::all();
+        $tipping_fees = DB::table('tipping_fees')
+            ->join('weighin_logs', 'weighin_logs.id', '=', 'tipping_fees.weighin_log_id')
+            ->join('service_providers', 'service_providers.id', '=', 'weighin_logs.service_provider_id')
+            ->leftJoin('payments', 'tipping_fees.id', '=', 'payments.tipping_fee_id')
+            ->select('tipping_fees.id', 'tipping_fees.control_no', 'service_providers.name', 'tipping_fees.amount_payable', DB::raw("IFNULL(sum(payments.amount_paid),0) as paid, tipping_fees.amount_payable-IFNULL(sum(payments.amount_paid),0) as balance"))
+            ->groupBy('tipping_fees.id')
+            ->groupBy('tipping_fees.control_no')
+            ->groupBy('service_providers.name')
+            ->groupBy('tipping_fees.amount_payable')
+            ->orderBy('tipping_fees.id', 'asc')
+            ->get();
         return view('pages.tipping_fees.index', compact('tipping_fees'));
+        // dd($tipping_fees);
     }
 
     /**
@@ -32,7 +45,7 @@ class TippingFeeController extends Controller
      */
     public function create()
     {
-        $drivers = Driver::all();
+
         $vehicles = Vehicle::all();
         $serviceProviders = ServiceProvider::whereNotIn('service_provider_type_id', [1])->get();
         $today = date('Ymd');
@@ -40,7 +53,7 @@ class TippingFeeController extends Controller
         $incrementedCurrentRowCount = $currentRowCount + 1;
 
         $controlNo = $today . "-" . str_pad($incrementedCurrentRowCount, 5, 0, STR_PAD_LEFT);
-        return view('pages.tipping_fees.create', compact('drivers', 'vehicles', 'serviceProviders', 'controlNo'));
+        return view('pages.tipping_fees.create', compact('vehicles', 'serviceProviders', 'controlNo'));
     }
 
     /**
@@ -53,7 +66,7 @@ class TippingFeeController extends Controller
     {
         $request->validate([
             // 'control_no' => 'required',
-            'driver_id' => 'required',
+            'driver_name' => 'required',
             'vehicle_id' => 'required',
             'service_provider_id' => 'required',
             'gross_weight' => 'required',
@@ -75,14 +88,14 @@ class TippingFeeController extends Controller
 
         // dd($data);
 
-        $id = Auth::id();
+        $user = Auth::user();
         $weighInLog = WeighInLog::create([
-            'driver_id' => $request['driver_id'],
+            'driver_name' => $request['driver_name'],
             'vehicle_id' => $request['vehicle_id'],
             'service_provider_id' => $request['service_provider_id'],
             'gross_weight' => $request['gross_weight'],
             'net_weight' => $request['net_weight'],
-            'user_id' => $id
+            'created_by' => $user->id
         ]);
 
         if ($weighInLog) {
@@ -97,7 +110,7 @@ class TippingFeeController extends Controller
         if ($tippingFee) {
             return redirect()->route('tipping_fees.index')->with('success', 'Tipping fee created successfully!');
         } else {
-            return redirect()->route('tipping_fees.index')->with('status', 'Tipping fee created failed!');
+            return redirect()->route('tipping_fees.index')->with('status', 'Tipping fee creation failed!');
         }
     }
 

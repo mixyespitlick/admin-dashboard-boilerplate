@@ -50,14 +50,25 @@
                     <form action="{{ route('weigh_in_logs.store') }}" method="POST">
                         @csrf
                         <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">OR No.</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="number" name="or_no" value="{{ old('or_no') }}">
+                            </div>
+                            {{-- {!! $errors->first('first_name', '<small class="text-danger">:message</small>') !!}
+                            --}}
+                        </div>
+                        <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Driver</label>
                             <div class="col-sm-10">
-                                <select name="driver_id" class="form-control form-control-default">
+                                {{-- <select name="driver_id" class="form-control form-control-default">
                                     @foreach ($drivers as $driver)
                                     <option value="{{ $driver->id }}">{{ $driver->fname}}
                                     </option>
                                     @endforeach
-                                </select>
+                                </select> --}}
+
+                                <input class="form-control" type="text" name="driver_name"
+                                    value="{{ old('driver_name') }}">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -65,7 +76,7 @@
                             <div class="col-sm-10">
                                 <select name="vehicle_id" class="form-control form-control-default"
                                     placeholder="Select Driver" id="vehicleSelect">
-                                    <option value="">Select Vehicle Type </option>
+                                    <option value="">Select Vehicle </option>
                                     @foreach ($vehicles as $vehicle)
                                     <option value="{{ $vehicle->id }}">{{ $vehicle->plate_no}}
                                     </option>
@@ -77,7 +88,7 @@
                             <label class="col-sm-2 col-form-label">Service Provider</label>
                             <div class="col-sm-10">
                                 <select name="service_provider_id" class="form-control form-control-default"
-                                    placeholder="Select Driver">
+                                    placeholder="Select Driver" id="serviceProviderSelect">
                                     <option value="">Select Service Provider </option>
                                     @foreach ($serviceProviders as $serviceProvider)
                                     <option value="{{ $serviceProvider->id }}">{{ $serviceProvider->name}}
@@ -89,20 +100,17 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Collection Point</label>
                             <div class="col-sm-10">
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="text" name="collection_point"
-                                        value="{{ old('collection_point') }}">
-                                </div>
+                                <select name="collection_point_id" class="form-control form-control-default"
+                                    placeholder="Select Collection Point" id="collectionPointSelect">
+                                    <option value="">Select Collection Point </option>
+                                    @foreach ($collectionPoints as $collectionPoint)
+                                    <option value="{{ $collectionPoint->id }}">{{ $collectionPoint->name}}
+                                    </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">OR No.</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" type="number" name="or_no" value="{{ old('or_no') }}">
-                            </div>
-                            {{-- {!! $errors->first('first_name', '<small class="text-danger">:message</small>') !!}
-                            --}}
-                        </div>
+
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Gross Weight</label>
                             <div class="col-sm-10">
@@ -129,7 +137,7 @@
                         </div> --}}
                 </div>
                 <div class="card-footer text-right">
-                    <button type "submit" class="btn btn-sm btn-primary m-r-10">Submit</button>
+                    <button type="submit" class="btn btn-sm btn-primary m-r-10">Submit</button>
                     <button type="reset" class="btn btn-sm btn-warning">Reset</button>
                 </div>
                 </form>
@@ -161,6 +169,8 @@
 <script>
     $(document).ready(function() {
         $("#vehicleSelect").select2();
+        $("#serviceProviderSelect").select2();
+        $("#collectionPointSelect").select2();
 
         $("#vehicleSelect").on('change',function(e) {
             e.preventDefault();

@@ -71,7 +71,7 @@
                                     <th>OR No.</th>
                                     <th>Date </th>
                                     <th>Time </th>
-                                    <th> Driver </th>
+                                    {{-- <th> Driver </th> --}}
                                     <th> Vehicle </th>
                                     <th> Service Provider </th>
                                     <th> Added By </th>
@@ -96,9 +96,9 @@
                                     <td>
                                         {{ $weighInLog->created_at->format('h:m A')}}
                                     </td>
-                                    <td>
+                                    {{-- <td>
                                         {{ $weighInLog->driver->fname}}
-                                    </td>
+                                    </td> --}}
                                     <td>
                                         {{ $weighInLog->vehicle->plate_no}}
                                     </td>

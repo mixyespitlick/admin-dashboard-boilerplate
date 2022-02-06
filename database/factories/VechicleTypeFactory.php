@@ -2,13 +2,17 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Driver;
+use App\VehicleType;
 use Faker\Generator as Faker;
 
-$factory->define(Driver::class, function (Faker $faker) {
+$factory->define(VehicleType::class, function (Faker $faker) {
+
+    $faker->addProvider(new \Faker\Provider\Fakecar($faker));
+
     return [
-        'fname' => $faker->firstName(),
-        'lname' => $faker->lastName(),
+        // 'name' => $faker->unique(true)->vehicleType,
+        'name' => $faker->unique()->vehicleType,
+        'description' => $faker->word(),
         'created_by' => function () {
             return App\User::inRandomOrder()->first()->id;
         },

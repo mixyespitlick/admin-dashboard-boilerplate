@@ -26,7 +26,7 @@ class CreateServiceProvidersTable extends Migration
 
             $table->foreign('created_by')->references('id')->on('users')->onUpdate('cascade');
             $table->foreign('updated_by')->references('id')->on('users')->onUpdate('cascade');
-            $table->foreign('service_provider_type_id')->refences('id')->on('service_provider_types')->onUpdate('cascade');
+            $table->foreign('service_provider_type_id')->references('id')->on('service_provider_types')->onUpdate('cascade');
         });
     }
 

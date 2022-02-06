@@ -69,8 +69,11 @@
                                 <tr>
                                     <th> No. </th>
                                     <th> Control No. </th>
-                                    <th> Amount Payable </th>
-                                    <th>Status</th>
+                                    <th> Account Name </th>
+                                    <th> Total Amount </th>
+                                    <th> Total Amount Paid </th>
+                                    <th> Total Amount Due </th>
+                                    {{-- <th>Status</th> --}}
                                     <th> Action </th>
                                 </tr>
                             </thead>
@@ -85,12 +88,30 @@
                                         {{ $tipping_fee->control_no}}
                                     </td>
                                     <td>
+                                        {{ $tipping_fee->name}}
+                                    </td>
+                                    <td>
                                         {{ $tipping_fee->amount_payable}}
                                     </td>
                                     <td>
-                                        {{ $tipping_fee->status ? 'Enabled' : 'Disabled'}}
+                                        {{ $tipping_fee->paid}}
                                     </td>
                                     <td>
+                                        {{ $tipping_fee->balance}}
+                                    </td>
+                                    {{-- <td>
+                                        {{ $tipping_fee->status ? 'Enabled' : 'Disabled'}}
+                                    </td> --}}
+                                    <td>
+
+                                        @if ($tipping_fee->balance>0)
+                                        <a href="{{ route('payments.generate',$tipping_fee->id) }}"
+                                            class="btn btn-sm btn-info m-r-5" data-toggle="tooltip" data-placement="top"
+                                            title="Pay">
+                                            <i class="icofont icofont-bill-alt"></i>
+                                        </a>
+                                        @endif
+
                                         <a href="{{ route('tipping_fees.edit',$tipping_fee->id) }}"
                                             class="btn btn-sm btn-warning m-r-5" data-toggle="tooltip"
                                             data-placement="top" title="Edit">
