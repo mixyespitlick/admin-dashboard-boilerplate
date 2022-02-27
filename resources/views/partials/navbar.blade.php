@@ -8,7 +8,7 @@
                 <i class="ti-search"></i>
             </a>
             <a href="index-2.html">
-                <img class="img-fluid" src="assets/images/logo.png" alt="Theme-Logo" />
+                <img class="img-fluid" src="assets/images/logo.png" alt="CENRO - SANITARY LANDFILL" />
             </a>
             <a class="mobile-options">
                 <i class="ti-more"></i>
@@ -22,17 +22,17 @@
                             <a href="javascript:void(0)"><i class="ti-menu"></i></a>
                         </div>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a class="main-search morphsearch-search" href="#">
                             <i class="ti-search"></i>
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a href="#!" onclick="javascript:toggleFullScreen()">
                             <i class="ti-fullscreen"></i>
                         </a>
                     </li>
-                    <li class="mega-menu-top">
+                    {{-- <li class="mega-menu-top">
                         <a href="#">
                             Mega
                             <i class="ti-angle-down"></i>
@@ -174,10 +174,10 @@
                                 </div>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                 </ul>
                 <ul class="nav-right">
-                    <li class="header-notification lng-dropdown">
+                    {{-- <li class="header-notification lng-dropdown">
                         <a href="#" id="dropdown-active-item">
                             <i class="flag-icon flag-icon-gb m-r-5"></i> English
                         </a>
@@ -261,11 +261,11 @@
                             <i class="ti-comments"></i>
                             <span class="badge">9</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="user-profile header-notification">
                         <a href="#!">
-                            <img src="assets/images/user.png" alt="User-Profile-Image" />
-                            <span>John Doe</span>
+                            <img src="{{ asset('images/user.png') }}" alt="User-Profile-Image" />
+                            <span>{{ Auth::user()->name }}</span>
                             <i class="ti-angle-down"></i>
                         </a>
                         <ul class="show-notification profile-notification">

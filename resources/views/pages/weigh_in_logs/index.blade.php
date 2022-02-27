@@ -50,14 +50,18 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-sm-10">
+                        <div class="col-sm-7">
                             <h5>WEIGH-IN LOGS</h5>
                             <span>List of Weigh-in logs</span>
                         </div>
-                        <div class="col-sm-2 text-right">
+                        <div class="col-sm-5 text-right">
                             {{-- <i class="icofont icofont-ui-edit"></i> --}}
                             <a href="{{ route('weigh_in_logs.create') }}" class="btn btn-sm btn-primary">
                                 Create
+                            </a>
+
+                            <a href="{{ route('weigh_in_logs.create_new') }}" class="btn btn-sm btn-primary">
+                                Create NEW
                             </a>
                         </div>
                     </div>
@@ -115,12 +119,22 @@
                                         {{ $weighInLog->status ? 'Enabled' : 'Disabled'}}
                                     </td> --}}
                                     <td>
+
+
                                         <form action="{{ route('weigh_in_logs.destroy',$weighInLog->id) }}"
                                             method="POST">
+                                            @if ($weighInLog->net_weight==0)
+                                            <a href="{{ route('weigh_in_logs.edit_new',$weighInLog->id) }}"
+                                                class="btn btn-sm btn-info m-r-5" data-toggle="tooltip"
+                                                data-placement="top" title="Update Tare">
+                                                <i class="icofont icofont-bill-alt"></i>
+                                            </a>
+                                            @else
                                             <a href="{{ route('weigh_in_logs.edit',$weighInLog->id) }}"
                                                 class="btn btn-sm btn-warning m-r-5">
                                                 <i class="icofont icofont-ui-edit"></i>
                                             </a>
+                                            @endif
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-sm btn-danger" type="submit"><i

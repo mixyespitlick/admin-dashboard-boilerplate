@@ -7,8 +7,8 @@
             <div class="main-menu-header">
                 <img class="img-40" src="{{ asset('images/user.png') }}" alt="User-Profile-Image" />
                 <div class="user-details">
-                    <span>John Doe</span>
-                    <span id="more-details">UX Designer<i class="ti-angle-down"></i></span>
+                    <span>{{ Auth::user()->name }}</span>
+                    <span id="more-details">Administrator<i class="ti-angle-down"></i></span>
                 </div>
             </div>
             <div class="main-menu-content">

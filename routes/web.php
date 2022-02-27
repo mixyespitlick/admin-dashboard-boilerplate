@@ -37,6 +37,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::resource('/service_providers', 'ServiceProviderController');
     Route::resource('/collection_points', 'CollectionPointController');
     Route::resource('/areas', 'AreaController');
+    Route::get('/weigh_in_logs/create_new', 'WeighInLogController@create_new')->name('weigh_in_logs.create_new');
+    Route::post('/weigh_in_logs/store_new', 'WeighInLogController@store_new')->name('weigh_in_logs.store_new');
+    Route::get('/weigh_in_logs/{weigh_in_log}/edit_new', 'WeighInLogController@edit_new')->name('weigh_in_logs.edit_new');
+    Route::put('/weigh_in_logs/{weigh_in_log}/update_new', 'WeighInLogController@update_new')->name('weigh_in_logs.update_new');
     Route::resource('/weigh_in_logs', 'WeighInLogController');
     Route::get('/vehicles/getVehicle/{id}', 'VehicleController@getVehicle')->name('vehicle.json');
     Route::resource('/vehicles', 'VehicleController');

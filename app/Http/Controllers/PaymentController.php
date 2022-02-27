@@ -73,7 +73,8 @@ class PaymentController extends Controller
     {
         $request->validate([
             'or_no' => 'required',
-            'amount_paid' => 'required'
+            'amount_paid' => 'required|lte:amount_payable',
+
         ]);
 
         if ($request['balance'] > 0) {
