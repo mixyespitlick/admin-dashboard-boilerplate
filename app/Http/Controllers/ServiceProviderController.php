@@ -19,6 +19,16 @@ class ServiceProviderController extends Controller
         return view('pages.service_providers.index', compact('serviceProviders'));
     }
 
+    public function get_serviceprovider_ajax(Request $request)
+    {
+        $serviceProvider = ServiceProvider::where('name', 'LIKE', '%' . $request->input('term', '') . '%')
+            // ->whereNotIn('name', ['MAXAN', 'CENRO'])
+            ->limit(5)
+            ->get(['id', 'name as text']);
+
+        return ['results' => $serviceProvider];
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -47,6 +57,13 @@ class ServiceProviderController extends Controller
 
         ServiceProvider::create($request->all());
         return redirect()->route('service_providers.index')->with('success', 'Service provider addedd successfully!');
+    }
+
+    public function store_ajax(Request $request)
+    {
+        $serviceProvider = $request->except(['_token']);
+        ServiceProvider::updateOrCreate($serviceProvider);
+        return response()->json(['success' => $serviceProvider]);
     }
 
     /**

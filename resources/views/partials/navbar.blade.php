@@ -8,7 +8,8 @@
                 <i class="ti-search"></i>
             </a>
             <a href="index-2.html">
-                <img class="img-fluid" src="assets/images/logo.png" alt="CENRO - SANITARY LANDFILL" />
+                {{-- <img class="img-fluid" src="assets/images/logo.png" alt="CENRO - SANITARY LANDFILL" /> --}}
+                CENRO - SANITARY LANDFILL
             </a>
             <a class="mobile-options">
                 <i class="ti-more"></i>

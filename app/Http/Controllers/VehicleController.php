@@ -6,6 +6,9 @@ use App\Vehicle;
 use App\VehicleType;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\isEmpty;
+use function PHPUnit\Framework\isNull;
+
 class VehicleController extends Controller
 {
     /**
@@ -17,6 +20,16 @@ class VehicleController extends Controller
     {
         $vehicles = Vehicle::all();
         return view('pages.vehicles.index', compact('vehicles'));
+    }
+
+    public function get_vehicles_ajax(Request $request)
+    {
+
+        $vehicles = Vehicle::where('plate_no', 'LIKE', '%' . $request->input('term', '') . '%')
+            ->limit(5)
+            ->get(['id', 'plate_no as text']);
+
+        return ['results' => $vehicles];
     }
 
     /**
@@ -50,6 +63,16 @@ class VehicleController extends Controller
         }
         Vehicle::create($input);
         return redirect()->route('vehicles.index')->with('success', 'Vehicle successfully added!');
+    }
+
+    public function store_ajax(Request $request)
+    {
+        $vehicle = $request->except(['_token']);
+        if (isEmpty($vehicle['body_no'])) {
+            $vehicle['body_no'] = $vehicle['plate_no'];
+        }
+        Vehicle::updateOrCreate($vehicle);
+        return response()->json(['success' => $vehicle]);
     }
 
     /**

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Area;
 use App\CollectionPoint;
 use App\Driver;
 use App\ServiceProvider;
+use App\ServiceProviderType;
 use App\Vehicle;
 use App\VehicleType;
 use App\WeighInLog;
@@ -33,10 +35,13 @@ class WeighInLogController extends Controller
     {
         // $drivers = Driver::all();
         $vehicles = Vehicle::all();
+        $vehicleTypes = VehicleType::all();
         $serviceProviders = ServiceProvider::select("*")->where("name", "=", "MAXAN")->orWhere("name", "=", "CENRO")->get();
+        $serviceProviderTypes = ServiceProviderType::all();
         $collectionPoints = CollectionPoint::all();
+        $areas = Area::all();
         $id = Auth::id();
-        return view('pages.weigh_in_logs.create', compact('vehicles', 'serviceProviders', 'collectionPoints', 'id'));
+        return view('pages.weigh_in_logs.create', compact('vehicles', 'serviceProviders', 'collectionPoints', 'id', 'vehicleTypes', 'areas', 'serviceProviderTypes'));
     }
 
     public function create_new()
@@ -99,7 +104,6 @@ class WeighInLogController extends Controller
             'vehicle_id' => 'required',
             'service_provider_id' => 'required',
             'collection_point_id' => 'required',
-            'or_no' => 'required',
             'gross_weight' => 'required',
             'net_weight' => 'required',
         ]);

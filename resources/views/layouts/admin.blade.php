@@ -3,7 +3,7 @@
 <!-- Mirrored from flatable.phoenixcoded.net/default/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jan 2019 11:25:26 GMT -->
 
 <head>
-  <title>Flat Able - Premium Admin Template by Phoenixcoded</title>
+  <title>CENRO - SLF</title>
 
   <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -11,12 +11,14 @@
     <![endif]-->
 
   <meta charset="utf-8" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+  {{--
   <meta name="description" content="Phoenixcoded" />
   <meta name="keywords"
     content=", Flat ui, Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app" />
-  <meta name="author" content="Phoenixcoded" />
+  <meta name="author" content="Phoenixcoded" /> --}}
 
   <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 

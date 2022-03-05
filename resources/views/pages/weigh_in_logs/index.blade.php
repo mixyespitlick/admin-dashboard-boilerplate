@@ -60,9 +60,9 @@
                                 Create
                             </a>
 
-                            <a href="{{ route('weigh_in_logs.create_new') }}" class="btn btn-sm btn-primary">
+                            {{-- <a href="{{ route('weigh_in_logs.create_new') }}" class="btn btn-sm btn-primary">
                                 Create NEW
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
                 </div>
@@ -73,13 +73,16 @@
                                 <tr>
                                     <th> No. </th>
                                     <th>OR No.</th>
-                                    <th>Date </th>
-                                    <th>Time </th>
+                                    <th>Area</th>
+                                    <th>Collection Point</th>
+
+
                                     {{-- <th> Driver </th> --}}
                                     <th> Vehicle </th>
-                                    <th> Service Provider </th>
-                                    <th> Added By </th>
+                                    <th> Customer </th>
+                                    {{-- <th> Added By </th> --}}
                                     <th>Net Weight</th>
+                                    <th>Date Recieved</th>
                                     {{-- <th>Status</th> --}}
                                     <th> Action </th>
                                 </tr>
@@ -95,11 +98,18 @@
                                         {{ $weighInLog->or_no }}
                                     </td>
                                     <td>
-                                        {{ $weighInLog->created_at->format('m-d-Y')}}
+                                        {{ $weighInLog->collectionPoint->area->name ?? ''}}
                                     </td>
                                     <td>
-                                        {{ $weighInLog->created_at->format('h:m A')}}
+                                        {{ $weighInLog->collectionPoint->name ?? ''}}
                                     </td>
+
+                                    {{-- <td>
+                                        {{ $weighInLog->created_at->format('m-d-Y')}}
+                                    </td> --}}
+                                    {{-- <td>
+                                        {{ $weighInLog->created_at->format('h:m A')}}
+                                    </td> --}}
                                     {{-- <td>
                                         {{ $weighInLog->driver->fname}}
                                     </td> --}}
@@ -109,11 +119,14 @@
                                     <td>
                                         {{ $weighInLog->serviceProvider->name }}
                                     </td>
-                                    <td>
+                                    {{-- <td>
                                         {{ $weighInLog->user->name }}
-                                    </td>
+                                    </td> --}}
                                     <td>
                                         {{ $weighInLog->net_weight }}
+                                    </td>
+                                    <td>
+                                        {{ $weighInLog->created_at}}
                                     </td>
                                     {{-- <td>
                                         {{ $weighInLog->status ? 'Enabled' : 'Disabled'}}

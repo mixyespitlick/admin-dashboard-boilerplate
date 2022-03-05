@@ -34,7 +34,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     // Route::get('/drivers/store', 'DriverController@store')->name('driver.destroy');
     Route::resource('/vehicle_types', 'VehicleTypeController');
     Route::resource('/service_provider_types', 'ServiceProviderTypeController');
+    Route::get('/service_providers/get_serviceprovider_ajax', 'ServiceProviderController@get_serviceprovider_ajax')->name('service_providers.get_serviceprovider_ajax');
+    Route::post('/service_providers/store_ajax', 'ServiceProviderController@store_ajax')->name('service_providers.store_ajax');
     Route::resource('/service_providers', 'ServiceProviderController');
+    Route::get('/collection_points/get_collectionpoint_ajax', 'CollectionPointController@get_collectionpoint_ajax')->name('collection_points.get_collectionpoint_ajax');
+    Route::post('/collection_points/store_ajax', 'CollectionPointController@store_ajax')->name('collection_points.store_ajax');
     Route::resource('/collection_points', 'CollectionPointController');
     Route::resource('/areas', 'AreaController');
     Route::get('/weigh_in_logs/create_new', 'WeighInLogController@create_new')->name('weigh_in_logs.create_new');
@@ -42,7 +46,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('/weigh_in_logs/{weigh_in_log}/edit_new', 'WeighInLogController@edit_new')->name('weigh_in_logs.edit_new');
     Route::put('/weigh_in_logs/{weigh_in_log}/update_new', 'WeighInLogController@update_new')->name('weigh_in_logs.update_new');
     Route::resource('/weigh_in_logs', 'WeighInLogController');
+    Route::get('/vehicles/get_vehicles_ajax', 'VehicleController@get_vehicles_ajax')->name('vehicles.get_vehicles_ajax');
     Route::get('/vehicles/getVehicle/{id}', 'VehicleController@getVehicle')->name('vehicle.json');
+    Route::post('/vehicles/store_ajax', 'VehicleController@store_ajax')->name('vehicles.store_ajax');
     Route::resource('/vehicles', 'VehicleController');
     Route::get('/tipping_fees/delete/{id}', 'DriverController@delete')->name('tipping_fees.delete');
     Route::resource('/tipping_fees', 'TippingFeeController');

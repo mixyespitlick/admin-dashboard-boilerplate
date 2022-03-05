@@ -19,6 +19,16 @@ class CollectionPointController extends Controller
         return view('pages.collection_points.index', compact('collectionPoints'));
     }
 
+    public function get_collectionpoint_ajax(Request $request)
+    {
+        $serviceProvider = CollectionPoint::where('name', 'LIKE', '%' . $request->input('term', '') . '%')
+            // ->whereNotIn('name', ['MAXAN', 'CENRO'])
+            ->limit(5)
+            ->get(['id', 'name as text']);
+
+        return ['results' => $serviceProvider];
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -46,6 +56,13 @@ class CollectionPointController extends Controller
 
         CollectionPoint::create($request->all());
         return redirect()->route('collection_points.index')->with('success', 'Collection point added succesfully!');
+    }
+
+    public function store_ajax(Request $request)
+    {
+        $collectionPoint = $request->except(['_token']);
+        CollectionPoint::updateOrCreate($collectionPoint);
+        return response()->json(['success' => $collectionPoint]);
     }
 
     /**

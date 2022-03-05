@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\CollectionPoint;
 use App\Driver;
 use App\ServiceProvider;
+use App\ServiceProviderType;
 use App\TippingFee;
 use App\Vehicle;
+use App\VehicleType;
 use App\WeighInLog;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -47,13 +49,15 @@ class TippingFeeController extends Controller
     {
 
         $vehicles = Vehicle::all();
+        $vehicleTypes = VehicleType::all();
         $serviceProviders = ServiceProvider::whereNotIn('service_provider_type_id', [1])->get();
+        $serviceProviderTypes = ServiceProviderType::all();
         $today = date('Ymd');
         $currentRowCount = TippingFee::whereDate('created_at', Carbon::today())->count();
         $incrementedCurrentRowCount = $currentRowCount + 1;
 
         $controlNo = $today . "-" . str_pad($incrementedCurrentRowCount, 5, 0, STR_PAD_LEFT);
-        return view('pages.tipping_fees.create', compact('vehicles', 'serviceProviders', 'controlNo'));
+        return view('pages.tipping_fees.create', compact('vehicles', 'serviceProviders', 'controlNo', 'vehicleTypes', 'serviceProviderTypes'));
     }
 
     /**
